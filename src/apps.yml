@@ -1,0 +1,12 @@
+Server:
+  Port: 8081
+Redis:
+  Address: '127.0.0.1:6379'
+  Password: ''
+  DB: 0
+UserRpc:
+  address: '127.0.0.1:8888'
+JWT:
+  Key: key
+  ExpiresTime: 1800
+  Issuer: 'WuQiYou'

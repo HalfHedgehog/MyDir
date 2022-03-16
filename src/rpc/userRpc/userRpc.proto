@@ -1,0 +1,46 @@
+//1、声明语法版本
+syntax = "proto3";
+
+//2、声明包
+package userRpc;
+
+//3、路径加别名以mod文件第一行显示的地址为根，然后追加目录
+option go_package = "httpServer/src/rpc/userRpc;userRpc";
+
+//相当于结构体,后面的数字是唯一标识
+message UserDto{
+  int64 UserID = 1;
+  string Password = 2;
+  string NickName = 3;
+  string ProfilePicture = 4;
+}
+
+message SignInRes{
+  bool flag = 1;
+  string message = 2;
+  int64 userId = 3;
+}
+
+message UpdateInfoRes{
+  bool flag = 1;
+  string message = 2;
+}
+
+message LogInRes{
+  bool flag = 1;
+  string message = 2;
+  string token = 3;
+}
+
+message UserInfoRes{
+  bool flag = 1;
+  string message = 2;
+  UserDto UserDto = 3;
+}
+
+service SearchService {
+  rpc signIn(UserDto) returns (SignInRes);//即刻响应
+  rpc logIn(UserDto) returns (LogInRes);
+  rpc getUserInfo(UserDto) returns (UserInfoRes);
+  rpc updateUserInfo(UserDto) returns (UpdateInfoRes);
+}
